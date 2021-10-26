@@ -12,6 +12,7 @@ const List = () => {
     }, [])
 
     const handleClickMove = (e, { id }) => {
+        localStorage.setItem(id, JSON.stringify(list[id-1]));
         history.push(`/${id}`);
     }
 

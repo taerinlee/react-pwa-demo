@@ -9,6 +9,7 @@ const Detail = () => {
         fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
         .then(response => response.json())
         .then(json => setUser(json))
+        .catch(setUser(JSON.parse(localStorage.getItem(id))))
     }, [id])
 
     return (
