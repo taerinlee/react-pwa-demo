@@ -21,10 +21,14 @@ self.addEventListener('install', function(event) {
           }
           return fetch(event.request).then(
             function(response) {
+  
+              var responseToCache = response.clone();
+  
               caches.open(CACHE_NAME)
                 .then(function(cache) {
-                  cache.put(event.request, response.clone());
+                  cache.put(event.request, responseToCache);
                 });
+  
               return response;
             }
           );
