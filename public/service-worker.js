@@ -36,3 +36,15 @@ self.addEventListener('install', function(event) {
       )
     );
   });
+
+  self.addEventListener('activate', function(e) {
+    e.waitUntil(
+      caches.keys().then(function(keyList) {
+            return Promise.all(keyList.map(function(key) {
+          if(CACHE_NAME.indexOf(key) === -1) {
+            return caches.delete(key);
+          }
+        }));
+      })
+    );
+  });
